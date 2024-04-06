@@ -13,7 +13,7 @@ export default function Surprise() {
         fontSize: "90px",
       }}
     >
-      YOU ARE THE BEST
+      I LOVE YOU MOTU 💘💌
     </div>
   );
 }

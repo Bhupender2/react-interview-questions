@@ -3,16 +3,23 @@ import "./App.css";
 import Surprise from "./Surprise";
 
 function App() {
-  const [time, setTime] = useState(10);
-
+  const [time, setTime] = useState(100);
+  const min = Math.floor(time / 60);
+  const sec = time % 60;
   useEffect(() => {
     const id = setInterval(() => {
-      setTime((time) => time - 1);
+      setTime((time) => {
+        if (time > 0) return time - 1;
+        else {
+          clearInterval(id);
+          return 0;
+        }
+      });
     }, 1000);
     return function () {
       clearInterval(id);
     };
-  }, [time]);
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
@@ -30,10 +37,13 @@ function App() {
               fontSize: "90px",
             }}
           >
-            {time}
+            {min > 10 ? "" : "0"}
+            {min}:{sec < 10 ? "0" : ""}
+            {sec}
           </div>
         )}
-        {(time === 0 || time < 0) && <Surprise />} {/*conditional rendering done*/}
+        {(time === 0 || time < 0) && <Surprise />}{" "}
+        {/*conditional rendering done*/}
       </header>
     </div>
   );
