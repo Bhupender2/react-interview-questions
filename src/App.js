@@ -12,7 +12,7 @@ function App() {
     return function () {
       clearInterval(id);
     };
-  }, []);
+  }, [time]);
   return (
     <div className="App">
       <header className="App-header">

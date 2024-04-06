@@ -2,7 +2,7 @@ export default function Surprise() {
   return (
     <div
       style={{
-        height: "200px",
+        height: "230px",
         width: "600px",
         backgroundColor: "white",
         color: "black",
