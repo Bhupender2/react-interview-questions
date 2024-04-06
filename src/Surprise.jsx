@@ -1,0 +1,19 @@
+export default function Surprise() {
+  return (
+    <div
+      style={{
+        height: "200px",
+        width: "600px",
+        backgroundColor: "white",
+        color: "black",
+        borderRadius: "10px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: "90px",
+      }}
+    >
+      YOU ARE THE BEST
+    </div>
+  );
+}
