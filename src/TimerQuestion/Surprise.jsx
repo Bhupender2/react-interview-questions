@@ -10,10 +10,10 @@ export default function Surprise() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        fontSize: "90px",
+        fontSize: "50px",
       }}
     >
-      I LOVE YOU MOTU 💘💌
+      You are Gonna <span style={{ color: "#E72929" }}> Make IT</span>
     </div>
   );
 }

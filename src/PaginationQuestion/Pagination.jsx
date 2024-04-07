@@ -1,24 +1,21 @@
-import React, { useState } from "react";
-import Paginate from "react-paginate";
+import { useState } from "react";
+import { useEffect } from "react";
 
-const Pagination = ({ data, itemsPerPage }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+export default function Pagination() {
+  //first step is to fetch the data
+  const [products, setProducts] = useState([]);
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+  async function fetchProducts() {
+    const res = await fetch("https://dummyjson.com/products?limit=100");
+    const data = await res.json();
 
-  const pageCount = Math.ceil(data.length / itemsPerPage);
+    if (data && data.products) {
+      setProducts(data.products);
+    }
+  }
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
-  return (
-    <div>
-      <Paginate
-        pageCount={pageCount}
-        onPageChange={handlePageChange}
-        currentPage={currentPage}
-      />
-    </div>
-  );
-};
-
-export default Pagination;
+  return <div>{products.map((curr) => curr.title)}</div>;
+}

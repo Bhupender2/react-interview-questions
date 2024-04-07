@@ -3,7 +3,7 @@ import "../App.css";
 import Surprise from "./Surprise";
 
 function Timer() {
-  const [time, setTime] = useState(100);
+  const [time, setTime] = useState(10);
   const min = Math.floor(time / 60);
   const sec = time % 60;
   useEffect(() => {
@@ -42,8 +42,7 @@ function Timer() {
             {sec}
           </div>
         )}
-        {(time === 0 || time < 0) && <Surprise />}{" "}
-        {/*conditional rendering done*/}
+        {time === 0 && <Surprise />} {/*conditional rendering done*/}
       </header>
     </div>
   );

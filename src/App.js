@@ -13,7 +13,7 @@ function App() {
         <Route path="/Timer" element={<Timer />} />
         <Route
           path="/pagination"
-          element={<Pagination data={data} itemsPerPage={5} />}
+          element={<Pagination data={data} itemsPerPage={2} />}
         />
       </Routes>
     </BrowserRouter>
