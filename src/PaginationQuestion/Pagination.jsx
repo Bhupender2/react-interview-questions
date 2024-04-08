@@ -8,7 +8,13 @@ export default function Pagination() {
   const [page, setPage] = useState(1); //for pagination by defualt its on 1 page
 
   function handleSetPage(selectedPage) {
-    setPage(selectedPage);
+    if (
+      selectedPage >= 1 &&
+      selectedPage <= products.length / 10 &&
+      selectedPage !== page
+    ) {
+      setPage(selectedPage);
+    }
   }
 
   async function fetchProducts() {
@@ -52,15 +58,41 @@ export default function Pagination() {
       )}
       {products.length > 0 && (
         <div className={styles.pagination}>
-          <span>➡️</span>
+          <span
+            onClick={() => {
+              if (page > 1) {
+                setPage((page) => page - 1);
+              }
+            }}
+            className={page <= 1 ? styles.pagination__disabled : ""}
+          >
+            ⬅️
+          </span>
+
           {Array.from({ length: products.length / 10 }, (_, i) => {
             return (
-              <span key={i} onClick={() => handleSetPage(i + 1)} className={page===i+1?styles.selected__page:""}>
+              <span
+                key={i}
+                onClick={() => handleSetPage(i + 1)}
+                className={page === i + 1 ? styles.selected__page : ""}
+              >
                 {i + 1}
               </span>
             );
           })}
-          <span>⬅️</span>
+
+          <span
+            onClick={() => {
+              if (page < products.length / 10) {
+                setPage((page) => page + 1);
+              }
+            }}
+            className={
+              page === products.length / 10 ? styles.pagination__disabled : ""
+            }
+          >
+            ➡️
+          </span>
         </div>
       )}
     </div>

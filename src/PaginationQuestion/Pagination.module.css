@@ -34,6 +34,9 @@
   cursor: pointer;
 }
 
-.selected__page{
-  background-color:rgb(220, 220, 220)
+.selected__page {
+  background-color: rgb(220, 220, 220);
+}
+.pagination__disabled {
+  opacity: 0;
 }
