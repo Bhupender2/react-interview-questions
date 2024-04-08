@@ -3,6 +3,7 @@ import Timer from "./TimerQuestion/Timer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PaginationFrontEndDriven from "./PaginationFrontEndDriven/PaginationFrontEndDriven";
 import Introduction from "./Introduction";
+import PaginationBackEndDriven from "./PaginationBackEndDriven/PaginationBackEndDriven";
 
 function App() {
   return (
@@ -13,6 +14,10 @@ function App() {
         <Route
           path="/pagination-frontend"
           element={<PaginationFrontEndDriven />}
+        />
+           <Route
+          path="/pagination-backend"
+          element={<PaginationBackEndDriven />}
         />
       </Routes>
     </BrowserRouter>
