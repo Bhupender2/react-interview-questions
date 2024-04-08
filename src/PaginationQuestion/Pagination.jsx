@@ -7,8 +7,8 @@ export default function Pagination() {
 
   const [page, setPage] = useState(1); //for pagination by defualt its on 1 page
 
-  function handleSetPage() {
-    setPage(page + 1);
+  function handleSetPage(selectedPage) {
+    setPage(selectedPage);
   }
 
   async function fetchProducts() {
@@ -54,7 +54,11 @@ export default function Pagination() {
         <div className={styles.pagination}>
           <span>➡️</span>
           {Array.from({ length: products.length / 10 }, (_, i) => {
-            return <span key={i}>{i + 1}</span>;
+            return (
+              <span key={i} onClick={() => handleSetPage(i + 1)} className={page===i+1?styles.selected__page:""}>
+                {i + 1}
+              </span>
+            );
           })}
           <span>⬅️</span>
         </div>
