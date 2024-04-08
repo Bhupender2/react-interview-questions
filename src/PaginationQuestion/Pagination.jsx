@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import styles from "./Pagination.module.css";
 
 export default function Pagination() {
-  //first step is to fetch the data
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]); //first step is to fetch the data
+
+  const [page, setPage] = useState(1); //for pagination by defualt its on 1 page
 
   async function fetchProducts() {
     const res = await fetch("https://dummyjson.com/products?limit=100");
@@ -37,7 +38,7 @@ export default function Pagination() {
 
       {products.length > 0 && (
         <div className={styles.products}>
-          {products.map((currentItem) => (
+          {products.slice(0, page * 10).map((currentItem) => (
             <div key={currentItem.id} className={styles.products__items}>
               <img src={currentItem.thumbnail} alt={currentItem.title} />
               <div>{currentItem.title}</div>
@@ -45,6 +46,44 @@ export default function Pagination() {
           ))}
         </div>
       )}
+
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div
+          style={{
+            border: "2px solid grey",
+            padding: "10px",
+            fontSize: "20px",
+            cursor:"pointer"
+          }}
+        >
+          ⬅️
+        </div>
+        {Array.from({ length: 10 }, (_, i) => {
+          return (
+            <div
+              style={{
+                border: "2px solid grey",
+                padding: "10px",
+                width: "30px",
+                fontSize: "20px",
+                cursor:"pointer"
+              }}
+            >
+              {i + 1}
+            </div>
+          );
+        })}
+        <div
+          style={{
+            border: "2px solid grey",
+            padding: "10px",
+            fontSize: "20px",
+            cursor:"pointer"
+          }}
+        >
+          ➡️
+        </div>
+      </div>
     </div>
   );
 }
