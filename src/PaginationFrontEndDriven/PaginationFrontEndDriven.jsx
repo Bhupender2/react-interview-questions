@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import styles from "./Pagination.module.css";
+import styles from './PaginationFrontEndDriven.module.css'
 
-export default function Pagination() {
+export default function PaginationFrontEndDriven() {
   const [products, setProducts] = useState([]); //first step is to fetch the data
 
   const [page, setPage] = useState(1); //for pagination by defualt its on 1 page
