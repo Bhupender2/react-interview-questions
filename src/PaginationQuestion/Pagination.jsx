@@ -7,6 +7,10 @@ export default function Pagination() {
 
   const [page, setPage] = useState(1); //for pagination by defualt its on 1 page
 
+  function handleSetPage() {
+    setPage(page + 1);
+  }
+
   async function fetchProducts() {
     const res = await fetch("https://dummyjson.com/products?limit=100");
     const data = await res.json();
@@ -38,7 +42,7 @@ export default function Pagination() {
 
       {products.length > 0 && (
         <div className={styles.products}>
-          {products.slice(0, page * 10).map((currentItem) => (
+          {products.slice(page * 10 - 10, page * 10).map((currentItem) => (
             <div key={currentItem.id} className={styles.products__items}>
               <img src={currentItem.thumbnail} alt={currentItem.title} />
               <div>{currentItem.title}</div>
@@ -46,44 +50,15 @@ export default function Pagination() {
           ))}
         </div>
       )}
-
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <div
-          style={{
-            border: "2px solid grey",
-            padding: "10px",
-            fontSize: "20px",
-            cursor:"pointer"
-          }}
-        >
-          ⬅️
+      {products.length > 0 && (
+        <div className={styles.pagination}>
+          <span>➡️</span>
+          {Array.from({ length: products.length / 10 }, (_, i) => {
+            return <span key={i}>{i + 1}</span>;
+          })}
+          <span>⬅️</span>
         </div>
-        {Array.from({ length: 10 }, (_, i) => {
-          return (
-            <div
-              style={{
-                border: "2px solid grey",
-                padding: "10px",
-                width: "30px",
-                fontSize: "20px",
-                cursor:"pointer"
-              }}
-            >
-              {i + 1}
-            </div>
-          );
-        })}
-        <div
-          style={{
-            border: "2px solid grey",
-            padding: "10px",
-            fontSize: "20px",
-            cursor:"pointer"
-          }}
-        >
-          ➡️
-        </div>
-      </div>
+      )}
     </div>
   );
 }
